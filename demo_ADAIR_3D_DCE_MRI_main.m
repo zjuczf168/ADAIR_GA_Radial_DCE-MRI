@@ -12,7 +12,7 @@ addpath('.\grasp_v2\nufft_toolbox\');
 % define number of spokes to be used per frame (Fibonacci number)
 nspokes=21;%%spoke can be any Fibonacci No.
 % load DCE-MRI data
-load breast_data.mat
+load brain_data.mat
 b1=b1/max(abs(b1(:)));
 % data dimensions
 [nx,ntviews,nc]=size(kdata);
