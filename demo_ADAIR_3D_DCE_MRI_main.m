@@ -1,18 +1,18 @@
 %--------------------------------------------------------------------------
-%% load data
+%% load data, Cartesian has been tested, non-Cart should be normalized, R2017
 %--------------------------------------------------------------------------
 clear all;close all; %#ok<CLALL>
 
 set(0,'DefaultFigureWindowStyle','docked')
 
-addpath('G:\grasp_v2\');
-addpath(genpath('D:\Matlab_Toolbox_czf\BM3D_MRI_toolbox\'))
+addpath('.\grasp_v2\');
+addpath(genpath('.\Matlab_Toolbox_czf\BM3D_MRI_toolbox\'))
 
-addpath('G:\grasp_v2\nufft_toolbox\');
+addpath('.\grasp_v2\nufft_toolbox\');
 % define number of spokes to be used per frame (Fibonacci number)
 nspokes=21;%%spoke can be any Fibonacci No.
-% load radial data
-load liver_data.mat
+% load DCE-MRI data
+load breast_data.mat
 b1=b1/max(abs(b1(:)));
 % data dimensions
 [nx,ntviews,nc]=size(kdata);
@@ -29,7 +29,7 @@ for ii=1:nt
     ku(:,:,ii)=k(:,(ii-1)*nspokes+1:ii*nspokes);
     wu(:,:,ii)=w(:,(ii-1)*nspokes+1:ii*nspokes);
 end
-% multicoil NUFFT operator
+% multicoil NUFFT operator, can also be used for Cartesian
 param.E=MCNUFFT(ku,wu,b1);
 % undersampled data
 param.y=kdatau;
